@@ -1,0 +1,17 @@
+version: '3'
+services: 
+  clinicalsapp: 
+    container_name: clinicals-api
+    restart: always
+    build: .
+    ports:
+       - '80:8000'
+    depends_on:
+       - mongo
+    environment: 
+       - DB=mongodb://mongo:27017/clinicals
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+       -  '27017:27017'
