@@ -2,13 +2,16 @@ import express from 'express';
 import properties from './config/properties.js';
 import db from './config/db.js';
 import bodyParser from 'body-parser';
-import clinicalRoutes from './routes.js'
+import clinicalRoutes from './routes.js';
+import cors from 'cors';
 
 db();
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 var clinicalRouter = express.Router();
 clinicalRoutes(clinicalRouter)
